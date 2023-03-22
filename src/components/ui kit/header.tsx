@@ -6,9 +6,11 @@ import { FC, useEffect } from "react";
 import { PrimaryButton, SecondaryButton } from "./buttons";
 import Logo from "./svg/Logo";
 import NavLink from "./navlink";
+import { useRouter } from "next/router";
 const Header: FC = () => {
   const dispatch = useAppDispatch();
   const logged = useAppSelector((state) => state.auth.logged);
+  const router = useRouter();
   useEffect(() => {
     if (typeof window !== "undefined") {
       if (localStorage.getItem("token")) dispatch(setAuth(true));
@@ -51,7 +53,7 @@ const Header: FC = () => {
               width="165px"
               height="73px"
               onClick={() => {
-                dispatch(setActive(true));
+                logged ? router.push("/profile") : dispatch(setActive(true));
               }}
             >
               {logged ? "Профиль" : "Войти"}

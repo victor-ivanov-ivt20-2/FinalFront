@@ -15,26 +15,12 @@ const gilroyBold = Gilroy({
 const gilroyMedium = Gilroy({
   src: "../../../fonts/Gilroy-Medium.woff",
 });
+import BackTitle from "@/components/backTitle";
 const CatalogPage = () => {
   const router = useRouter();
   return (
     <div className="container">
-      <div className="bg-white rounded-[40px] mb-5 flex py-[35px] gap-8 px-[52px] items-center">
-        <div
-          onClick={() => {
-            router.back();
-          }}
-          className="cursor-pointer"
-        >
-          <SwipeLeft></SwipeLeft>
-        </div>
-        <h1
-          style={gilroyBold.style}
-          className=" text-slate-900 text-[32px] leading-[48px]"
-        >
-          Каталог
-        </h1>
-      </div>
+      <BackTitle>Каталог</BackTitle>
       <div className="bg-white rounded-[40px] pt-[25px] px-[101px] pb-[42px] mb-5">
         <div className="flex gap-5 items-center">
           <div className="flex-1">

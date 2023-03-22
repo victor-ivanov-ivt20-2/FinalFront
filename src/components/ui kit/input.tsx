@@ -86,20 +86,12 @@ export const ModalInput: FC<ModalInputProps> = ({
   type = "text",
 }) => {
   return (
-    <div
-      style={{
-        borderRadius: "16px",
-        border: "1px solid rgb(226 232 240)",
-      }}
-      className="bg-white px-6 py-[22px]"
-    >
-      <input
-        className="w-full placeholder:text-slate-400 outline-none leading-5 font-medium text-[15px]"
-        type={type}
-        placeholder={placeholder}
-        onChange={onChange}
-        value={value}
-      />
-    </div>
+    <input
+      className="w-full border-[2px] border-slate-200 rounded-2xl bg-white px-6 py-[22px] placeholder:text-slate-400 outline-none leading-5 font-medium text-[15px]"
+      type={type}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+    />
   );
 };
