@@ -19,6 +19,7 @@ RUN npx next telemetry disable
 
 # need to install linux specific swc builds
 RUN npm install -D @swc/cli @swc/core
+RUN npm install
 
 COPY . .
 
