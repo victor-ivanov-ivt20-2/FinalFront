@@ -49,8 +49,8 @@ export default function YandexMap() {
                   <Placemark
                     key={placemark.name}
                     geometry={[
-                      parseFloat(placemark.longitude),
                       parseFloat(placemark.latitude),
+                      parseFloat(placemark.longitude),
                     ]}
                     properties={{
                       hintContent: `<b> ${placemark.description} </b>`,
