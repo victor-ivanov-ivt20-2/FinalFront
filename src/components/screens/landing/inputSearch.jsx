@@ -9,10 +9,10 @@ import {
   Checkbox,
 } from "@/components/ui kit/input";
 const gilroyBold = Gilroy({
-  src: "./Gilroy-Bold.woff",
+  src: "../../../fonts/Gilroy-Bold.woff",
 });
 const gilroyMedium = Gilroy({
-  src: "./Gilroy-Medium.woff",
+  src: "../../../fonts/Gilroy-Medium.woff",
 });
 const manrope = Manrope({
   subsets: ["cyrillic"],
