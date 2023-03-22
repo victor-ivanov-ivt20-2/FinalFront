@@ -1,6 +1,5 @@
-
-import { YMaps, Map, Placemark, ObjectManager } from "@pbe/react-yandex-maps";
-import { gql, useQuery } from '@apollo/client'
+import { YMaps, Map, Placemark, Clusterer } from "@pbe/react-yandex-maps";
+import { gql, useQuery } from "@apollo/client";
 import { useEffect } from "react";
 const FINDALL = gql`
   query findAll($input: FindMany!) {
@@ -14,44 +13,55 @@ const FINDALL = gql`
 `;
 
 export default function YandexMap() {
-    const { data, loading, error } = useQuery(FINDALL, {
+  const { data, loading, error } = useQuery(FINDALL, {
     variables: {
       input: {
         skip: 0,
-        take: 10
-      }
-    }
+        take: 10,
+      },
+    },
   });
   useEffect(() => {
     if (data)
-    console.log(data.findAll.map(placemark => {
-      if (placemark) 
-      return placemark
-    }) )
-  }, [data])
+      console.log(
+        data.findAll.map((placemark) => {
+          if (placemark) return placemark;
+        })
+      );
+  }, [data]);
   if (data)
     return (
-        <YMaps>
-            <Map
-              height={600}
-              width={1290}
-              defaultState={{ center: [62.03755, 129.71431], zoom: 15 }}
-            >
-                {
-                    data.findAll.map(placemark => { if (placemark.longitude) {
-                      return (
-                        <Placemark key={placemark.name}
-                            geometry={[parseFloat(placemark.longitude), parseFloat(placemark.latitude)]} 
-                            properties={{
-                                hintContent: `<b> ${placemark.description} </b>`,
-                                iconCaption: placemark.name,
-                            }}
-                            />
-                      )
+      <YMaps>
+        <Map
+          height={600}
+          width={1290}
+          defaultState={{ center: [62.03755, 129.71431], zoom: 15 }}
+        >
+          <Clusterer
+            options={{
+              preset: "islands#invertedVioletClusterIcons",
+              groupByCoordinates: false,
+            }}
+          >
+            {data.findAll.map((placemark) => {
+              if (placemark.longitude) {
+                return (
+                  <Placemark
+                    key={placemark.name}
+                    geometry={[
+                      parseFloat(placemark.longitude),
+                      parseFloat(placemark.latitude),
+                    ]}
+                    properties={{
+                      hintContent: `<b> ${placemark.description} </b>`,
+                      iconCaption: placemark.name,
                     }}
-                    )
-                }
-                {/* <Placemark
+                  />
+                );
+              }
+            })}
+          </Clusterer>
+          {/* <Placemark
                 onClick={() => {
                   console.log("hey");
                 }}
@@ -64,10 +74,8 @@ export default function YandexMap() {
                   preset: "island",
                 }}
               /> */}
-            </Map>
-        </YMaps>
-    )
-return (
-    <div></div>
-)
+        </Map>
+      </YMaps>
+    );
+  return <div></div>;
 }
