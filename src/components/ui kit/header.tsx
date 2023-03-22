@@ -1,9 +1,19 @@
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import authSlice, { setAuth } from "@/store/auth.slice";
+import { setActive } from "@/store/modal.slice";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { PrimaryButton, SecondaryButton } from "./buttons";
 import Logo from "./svg/Logo";
-
+import NavLink from "./navlink";
 const Header: FC = () => {
+  const dispatch = useAppDispatch();
+  const logged = useAppSelector((state) => state.auth.logged);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (localStorage.getItem("token")) dispatch(setAuth(true));
+    }
+  }, []);
   return (
     <header className="mb-4">
       <div className="container h-[100px] flex items-center bg-white rounded-b-[44px]">
@@ -14,16 +24,16 @@ const Header: FC = () => {
           <nav>
             <ul className="flex text-lg font-medium leading-[25px] text-[#747474] gap-8">
               <li>
-                <Link href="#">Главная</Link>
+                <NavLink href="/">Главная</NavLink>
               </li>
               <li>
-                <Link href="#">Каталог</Link>
+                <NavLink href="/catalog">Каталог</NavLink>
               </li>
               <li>
-                <Link href="#">Способ оплаты</Link>
+                <NavLink href="#">Способ оплаты</NavLink>
               </li>
               <li>
-                <Link href="#">О нас</Link>
+                <NavLink href="#">О нас</NavLink>
               </li>
             </ul>
           </nav>
@@ -32,7 +42,7 @@ const Header: FC = () => {
               height="73px"
               width="270px"
               onClick={() => {
-                console.log("clicked");
+                dispatch(setActive(true));
               }}
             >
               Добавить турбазу
@@ -40,9 +50,11 @@ const Header: FC = () => {
             <SecondaryButton
               width="165px"
               height="73px"
-              onClick={() => console.log("je")}
+              onClick={() => {
+                dispatch(setActive(true));
+              }}
             >
-              Войти
+              {logged ? "Профиль" : "Войти"}
             </SecondaryButton>
           </div>
         </div>

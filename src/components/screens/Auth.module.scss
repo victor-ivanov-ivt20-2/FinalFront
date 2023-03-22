@@ -1,0 +1,58 @@
+.auth {
+  @apply rounded-3xl h-[474px] w-[445px] p-8 bg-white;
+  z-index: 100;
+  > h1 {
+    @apply font-black text-[22px] mb-8 leading-[130%] text-slate-900;
+  }
+  form {
+    @apply flex flex-col gap-6;
+    > div {
+      @apply flex flex-col;
+    }
+  }
+  input {
+    @apply bg-white border-[1px] rounded-xl p-5 font-medium text-base leading-[140%] text-slate-900;
+    border-color: #e2e8f0;
+    outline: none;
+  }
+  input::placeholder {
+    @apply text-base leading-[140%] font-medium text-slate-400;
+  }
+  button {
+    @apply flex text-white justify-center items-center rounded-xl h-[69px];
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 160%;
+    box-shadow: 0px 4px 24px rgba(238, 238, 238, 0.15);
+  }
+  .reg {
+    margin-top: 12px;
+    background: #eff6ff;
+    box-shadow: 0px 4px 24px rgba(238, 238, 238, 0.15);
+    border-radius: 12px;
+    color: #317dfc;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 160%;
+  }
+  .lines {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    div {
+      @apply w-[165px] bg-slate-200 h-[2px];
+    }
+  }
+  .google {
+    @apply w-full;
+    margin-top: 12px;
+    background: #eff6ff;
+    box-shadow: 0px 4px 24px rgba(238, 238, 238, 0.15);
+    border-radius: 12px;
+    color: #317dfc;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 160%;
+  }
+}

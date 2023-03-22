@@ -4,12 +4,12 @@ import SearchInputLogo from "./svg/SearchInputLogo";
 import Users from "./svg/Users";
 export const SearchInput: FC = () => {
   return (
-    <div className="flex bg-white px-6 py-5 gap-2 rounded-xl">
+    <div className="flex border-[#E2E8F0] border-[1px] bg-white px-6 py-5 gap-2 rounded-xl">
       <SearchInputLogo />
       <input
         type="text"
         placeholder="Место, куда хотите поехать"
-        className="w-full outline-none placeholder:text-[15px] placeholder:font-medium placeholder:text-slate-400 placeholder:underline"
+        className="w-full outline-none placeholder:text-[15px] placeholder:font-medium placeholder:text-slate-400"
       />
     </div>
   );
@@ -18,8 +18,14 @@ export const SearchInput: FC = () => {
 export const CalendarInput: FC = () => {
   return (
     <div>
-      <div className={"flex bg-white px-6 py-5 gap-2 rounded-xl"}>
-        <Calendar />
+      <div
+        className={
+          "flex border-[#E2E8F0] w-[274px] border-[1px] bg-white px-6 py-5 gap-2 rounded-xl"
+        }
+      >
+        <div className="w-[24px]">
+          <Calendar />
+        </div>
         <input
           className="outline-none text-[15px] font-medium text-slate-400"
           type="date"
@@ -36,7 +42,11 @@ export const CalendarInput: FC = () => {
 
 export const UsersInput: FC = () => {
   return (
-    <div className={"flex bg-white px-6 py-5 gap-2 rounded-xl"}>
+    <div
+      className={
+        "flex border-[#E2E8F0] border-[1px] w-[174px] bg-white px-6 py-5 gap-2 rounded-xl"
+      }
+    >
       <Users />
       <input
         type="text"
@@ -48,14 +58,48 @@ export const UsersInput: FC = () => {
 };
 interface CheckboxProps {
   children: ReactNode;
+  color: string;
 }
-export const Checkbox: FC<CheckboxProps> = ({ children }) => {
+export const Checkbox: FC<CheckboxProps> = ({ children, color = "white" }) => {
+  const style = {
+    color: color,
+  };
   return (
     <div className="flex gap-2 items-center pt-2 pb-2 pl-2">
       <input className="w-[16px] h-[16px]" type="checkbox" />
-      <label className="text-xs leading-4 font-medium text-white">
+      <label style={style} className="text-xs leading-4 font-medium">
         {children}
       </label>
+    </div>
+  );
+};
+interface ModalInputProps {
+  placeholder: string;
+  onChange: () => void;
+  value: string | number | undefined;
+  type: string;
+}
+export const ModalInput: FC<ModalInputProps> = ({
+  value,
+  placeholder,
+  onChange,
+  type = "text",
+}) => {
+  return (
+    <div
+      style={{
+        borderRadius: "16px",
+        border: "1px solid rgb(226 232 240)",
+      }}
+      className="bg-white px-6 py-[22px]"
+    >
+      <input
+        className="w-full placeholder:text-slate-400 outline-none leading-5 font-medium text-[15px]"
+        type={type}
+        placeholder={placeholder}
+        onChange={onChange}
+        value={value}
+      />
     </div>
   );
 };

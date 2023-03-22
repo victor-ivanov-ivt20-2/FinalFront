@@ -19,19 +19,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Header></Header>
         <InputSearch></InputSearch>
         <Recommend></Recommend>
         <div className="mt-4">
           <YandexMap></YandexMap>
         </div>
         <Phone></Phone>
-        <Footer></Footer>
-        {/* <YandexMap></YandexMap>
-        <ClientOnly>
-          <Test></Test>
-        </ClientOnly>
-        <Auth></Auth> */}
       </main>
     </>
   );
