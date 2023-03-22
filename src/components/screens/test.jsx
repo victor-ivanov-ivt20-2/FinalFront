@@ -21,8 +21,9 @@ const CREATEPLACE = gql`
 export default function Test() {
   const [name, setName] = useState();
   const [desc, setDesc] = useState();
-  const [long, setLong] = useState();
-  const [lati, setLati] = useState();
+  const [city, setCity] = useState();
+  const [street, setStreet] = useState();
+  const [house, setHouse] = useState();
   const router = useRouter();
   const { data, loading, error } = useQuery(FINDALL, {
     variables: {
@@ -41,8 +42,10 @@ export default function Test() {
         input: {
           name: name,
           description: desc,
-          longitude: long,
-          latitude: lati,
+          region: "",
+          city: city,
+          street: street,
+          house: house,
         },
       },
     }).then((response) => router.reload());
@@ -53,18 +56,17 @@ export default function Test() {
   if (data)
     return (
       <div>
-        {data.findAll.map((dat) => (
-          <div key={dat.name}>{dat.name}</div>
-        ))}
         <form onSubmit={addPlace}>
           <label>Название</label>
           <input type="text" onChange={(e) => setName(e.target.value)} />
           <label>Описание</label>
           <input type="text" onChange={(e) => setDesc(e.target.value)} />
-          <label>Долгота</label>
-          <input type="text" onChange={(e) => setLong(e.target.value)} />
-          <label>Широта</label>
-          <input type="text" onChange={(e) => setLati(e.target.value)} />
+          <label>Город</label>
+          <input type="text" onChange={(e) => setCity(e.target.value)} />
+          <label>Улица</label>
+          <input type="text" onChange={(e) => setStreet(e.target.value)} />
+          <label>Дом</label>
+          <input type="text" onChange={(e) => setHouse(e.target.value)} />
           <input type="submit" />
         </form>
       </div>
