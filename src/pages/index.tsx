@@ -3,6 +3,9 @@ import Head from "next/head";
 import YandexMap from "@/components/map/YandexMap";
 import Test from "@/components/screens/test";
 import ClientOnly from "@/graphql/clientOnly";
+import Auth from "@/components/screens/auth";
+import Header from "@/components/ui kit/header";
+import InputSearch from "@/components/screens/landing/inputSearch";
 export default function Home() {
   return (
     <>
@@ -13,10 +16,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <YandexMap></YandexMap>
+        <Header></Header>
+        <InputSearch></InputSearch>
+        <div className="mt-4">
+          <YandexMap></YandexMap>
+        </div>
+        {/* <YandexMap></YandexMap>
         <ClientOnly>
           <Test></Test>
         </ClientOnly>
+        <Auth></Auth> */}
       </main>
     </>
   );
