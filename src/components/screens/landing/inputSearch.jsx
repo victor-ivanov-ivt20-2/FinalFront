@@ -25,6 +25,7 @@ export default function InputSearch() {
   };
   const [name, setName] = useState("");
   const router = useRouter();
+  const [category, setCategory] = useState();
   return (
     <div className="container w-full h-[637px]" style={style}>
       <div className={gilroyBold.className}>

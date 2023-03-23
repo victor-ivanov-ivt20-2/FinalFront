@@ -66,14 +66,27 @@ export const UsersInput: FC = () => {
 interface CheckboxProps {
   children: ReactNode;
   color: string;
+  value: boolean;
+  name: string;
+  onChange: () => void;
 }
-export const Checkbox: FC<CheckboxProps> = ({ children, color = "white" }) => {
+export const Checkbox: FC<CheckboxProps> = ({
+  children,
+  color = "white",
+  value = false,
+  onChange,
+}) => {
   const style = {
     color: color,
   };
   return (
     <div className="flex gap-2 items-center pt-2 pb-2 pl-2">
-      <input className="w-[16px] h-[16px]" type="checkbox" />
+      <input
+        className="w-[16px] h-[16px]"
+        type="checkbox"
+        checked={value}
+        onChange={onChange}
+      />
       <label style={style} className="text-xs leading-4 font-medium">
         {children}
       </label>
