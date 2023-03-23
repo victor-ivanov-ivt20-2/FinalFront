@@ -32,32 +32,3 @@ const FINDBYNAME = gql`
     }
   }
 `;
-export async function getServerSideProps({ query }) {
-  if (query.name) {
-    const find = await client.query({
-      query: FINDBYNAME,
-      variables: {
-        name: query.name,
-      },
-    });
-    return {
-      props: {
-        data: find.data.findByName,
-      },
-    };
-  }
-  const find = await client.query({
-    query: FINDALL,
-    variables: {
-      input: {
-        skip: 0,
-        take: 12,
-      },
-    },
-  });
-  return {
-    props: {
-      data: find.data.findAll,
-    },
-  };
-}
