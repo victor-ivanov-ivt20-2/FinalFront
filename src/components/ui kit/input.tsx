@@ -2,12 +2,19 @@ import { FC, ReactNode } from "react";
 import Calendar from "./svg/Calendar";
 import SearchInputLogo from "./svg/SearchInputLogo";
 import Users from "./svg/Users";
-export const SearchInput: FC = () => {
+interface SearchInputProps {
+  value: string;
+  onChange: () => void;
+}
+
+export const SearchInput: FC<SearchInputProps> = ({ value, onChange }) => {
   return (
     <div className="flex border-[#E2E8F0] border-[1px] bg-white px-6 py-5 gap-2 rounded-xl">
       <SearchInputLogo />
       <input
         type="text"
+        value={value}
+        onChange={onChange}
         placeholder="Место, куда хотите поехать"
         className="w-full outline-none placeholder:text-[15px] placeholder:font-medium placeholder:text-slate-400"
       />
@@ -59,14 +66,27 @@ export const UsersInput: FC = () => {
 interface CheckboxProps {
   children: ReactNode;
   color: string;
+  value: boolean;
+  name: string;
+  onChange: () => void;
 }
-export const Checkbox: FC<CheckboxProps> = ({ children, color = "white" }) => {
+export const Checkbox: FC<CheckboxProps> = ({
+  children,
+  color = "white",
+  value = false,
+  onChange,
+}) => {
   const style = {
     color: color,
   };
   return (
     <div className="flex gap-2 items-center pt-2 pb-2 pl-2">
-      <input className="w-[16px] h-[16px]" type="checkbox" />
+      <input
+        className="w-[16px] h-[16px]"
+        type="checkbox"
+        checked={value}
+        onChange={onChange}
+      />
       <label style={style} className="text-xs leading-4 font-medium">
         {children}
       </label>
