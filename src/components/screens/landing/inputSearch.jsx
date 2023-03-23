@@ -24,9 +24,11 @@ export default function InputSearch() {
   return (
     <div className="container w-full h-[637px]" style={style}>
       <div className={gilroyBold.className}>
-        <h1 className="text-[48px] w-[54%] pl-[51px] pt-[158px] leading-[59px] font-extrabold text-white">
+        <h1 className="flex flex-col text-[48px] w-[54%] pl-[51px] pt-[158px] leading-[59px] font-extrabold text-white">
           Раскрась свой отдых{" "}
-          <span className="text-[40px]">Которые очень красивые бла-бла</span>
+          <span style={gilroyMedium.style} className="text-[32px] opacity-60">
+            Выходами на свежий воздух
+          </span>
         </h1>
         <div className="mx-[52px] mt-[30px]">
           <div

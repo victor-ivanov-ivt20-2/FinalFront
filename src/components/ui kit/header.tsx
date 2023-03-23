@@ -44,7 +44,9 @@ const Header: FC = () => {
               height="73px"
               width="270px"
               onClick={() => {
-                dispatch(setActive(true));
+                logged
+                  ? router.push("/create-tourbase")
+                  : dispatch(setActive(true));
               }}
             >
               Добавить турбазу

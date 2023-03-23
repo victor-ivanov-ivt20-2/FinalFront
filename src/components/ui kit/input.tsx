@@ -87,11 +87,26 @@ export const ModalInput: FC<ModalInputProps> = ({
 }) => {
   return (
     <input
+      autoComplete="off"
       className="w-full border-[2px] border-slate-200 rounded-2xl bg-white px-6 py-[22px] placeholder:text-slate-400 outline-none leading-5 font-medium text-[15px]"
       type={type}
       placeholder={placeholder}
       onChange={onChange}
       value={value}
     />
+  );
+};
+export const Textarea: FC<{
+  placeholder: string;
+  value: string;
+  onChange: () => void;
+}> = ({ placeholder, value, onChange }) => {
+  return (
+    <textarea
+      onChange={onChange}
+      value={value}
+      placeholder={placeholder}
+      className="w-full resize-none border-[2px] border-slate-200 rounded-2xl bg-white px-6 py-[22px] placeholder:text-slate-400 outline-none leading-5 font-medium text-[15px]"
+    ></textarea>
   );
 };
