@@ -9,6 +9,7 @@ import Recommend from "@/components/screens/landing/Recommend";
 import Header from "@/components/ui kit/header";
 import InputSearch from "@/components/screens/landing/inputSearch";
 import Footer from "@/components/ui kit/footer";
+import Karta from "@/components/ui kit/svg/karta";
 export default function Home() {
   return (
     <>
@@ -22,7 +23,14 @@ export default function Home() {
         <InputSearch></InputSearch>
         <Recommend></Recommend>
         <div className="mt-4">
-          <YandexMap></YandexMap>
+          <div className="mb-4">
+            <div className="container w-full px-[52px] pb-[50px] bg-white rounded-[40px] flex justify-between flex-col pt-[28px]">
+              <div className="mb-[98px]">
+                <Karta></Karta>
+              </div>
+              <YandexMap></YandexMap>
+            </div>
+          </div>
         </div>
         <Phone></Phone>
       </main>

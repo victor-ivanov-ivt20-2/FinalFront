@@ -9,6 +9,22 @@ import SwipeLeft from "@/components/ui kit/svg/swipe-left";
 import { PrimaryButton } from "@/components/ui kit/buttons";
 import Gilroy from "next/font/local";
 import { useRouter } from "next/router";
+import { gql, useQuery } from "@apollo/client";
+const FINDALL = gql`
+  query findAll($input: FindMany!) {
+    findAll(findmany: $input) {
+      name
+      id
+      price
+      street
+      city
+      description
+      longitude
+      latitude
+    }
+  }
+`;
+
 const gilroyBold = Gilroy({
   src: "../../../fonts/Gilroy-Bold.woff",
 });
@@ -17,6 +33,14 @@ const gilroyMedium = Gilroy({
 });
 import BackTitle from "@/components/backTitle";
 const CatalogPage = () => {
+  const { data, loading, error } = useQuery(FINDALL, {
+    variables: {
+      input: {
+        skip: 0,
+        take: 10,
+      },
+    },
+  });
   const router = useRouter();
   return (
     <div className="container">
@@ -51,14 +75,18 @@ const CatalogPage = () => {
       </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-3 gap-4">
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
-          <Card></Card>
+          {data
+            ? data.findAll.map((dat) => (
+                <Card
+                  name={dat.name}
+                  desc={dat.description}
+                  price={dat.price}
+                  city={dat.city}
+                  street={dat.street}
+                  id={dat.id}
+                ></Card>
+              ))
+            : ""}
         </div>
       </div>
     </div>

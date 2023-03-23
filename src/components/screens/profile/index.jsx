@@ -31,12 +31,19 @@ const ProfilePage = () => {
           authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       },
-    }).then((response) => {
-      console.log(response);
-      localStorage.removeItem("token");
-      dispatch(setAuth(false));
-      router.push("/");
-    });
+    })
+      .then((response) => {
+        console.log(response);
+        localStorage.removeItem("token");
+        dispatch(setAuth(false));
+        router.push("/");
+      })
+      .catch((error) => {
+        console.log(error);
+        localStorage.removeItem("token");
+        dispatch(setAuth(false));
+        router.push("/");
+      });
   };
   useEffect(() => {
     setTimeout(() => {
