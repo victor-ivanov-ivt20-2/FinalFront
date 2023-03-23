@@ -73,26 +73,26 @@ const TourPage = ({ tour }) => {
 
 export default TourPage;
 
-export async function getStaticPaths() {
-  const { loading, error, data } = await client.query({
-    query: FINDALL,
-    variables: {
-      input: {
-        skip: 0,
-        take: 100,
-      },
-    },
-  });
-  const paths = data.findAll.map((tour) => ({
-    params: {
-      id: tour.id.toString(),
-    },
-  }));
-  return {
-    paths: paths || [],
-    fallback: false,
-  };
-}
+// export async function getStaticPaths() {
+//   const { loading, error, data } = await client.query({
+//     query: FINDALL,
+//     variables: {
+//       input: {
+//         skip: 0,
+//         take: 100,
+//       },
+//     },
+//   });
+//   const paths = data.findAll.map((tour) => ({
+//     params: {
+//       id: tour.id.toString(),
+//     },
+//   }));
+//   return {
+//     paths: paths || [],
+//     fallback: false,
+//   };
+// }
 const FINDONE = gql`
   query FindOne($id: Int!) {
     place(id: $id) {
@@ -107,7 +107,7 @@ const FINDONE = gql`
     }
   }
 `;
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const { data } = await client.query({
     query: FINDONE,
     variables: {
