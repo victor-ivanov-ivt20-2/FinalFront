@@ -2,12 +2,19 @@ import { FC, ReactNode } from "react";
 import Calendar from "./svg/Calendar";
 import SearchInputLogo from "./svg/SearchInputLogo";
 import Users from "./svg/Users";
-export const SearchInput: FC = () => {
+interface SearchInputProps {
+  value: string;
+  onChange: () => void;
+}
+
+export const SearchInput: FC<SearchInputProps> = ({ value, onChange }) => {
   return (
     <div className="flex border-[#E2E8F0] border-[1px] bg-white px-6 py-5 gap-2 rounded-xl">
       <SearchInputLogo />
       <input
         type="text"
+        value={value}
+        onChange={onChange}
         placeholder="Место, куда хотите поехать"
         className="w-full outline-none placeholder:text-[15px] placeholder:font-medium placeholder:text-slate-400"
       />

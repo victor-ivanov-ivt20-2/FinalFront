@@ -24,7 +24,7 @@ const FINDALL = gql`
     }
   }
 `;
-
+import { useEffect, useState } from "react";
 const gilroyBold = Gilroy({
   src: "../../../fonts/Gilroy-Bold.woff",
 });
@@ -32,23 +32,24 @@ const gilroyMedium = Gilroy({
   src: "../../../fonts/Gilroy-Medium.woff",
 });
 import BackTitle from "@/components/backTitle";
-const CatalogPage = () => {
-  const { data, loading, error } = useQuery(FINDALL, {
-    variables: {
-      input: {
-        skip: 0,
-        take: 10,
-      },
-    },
-  });
+const CatalogPage = ({ data }) => {
   const router = useRouter();
+  const [name, setName] = useState();
+  useEffect(() => {
+    if (router.query?.name) {
+      setName(router.query.name);
+    }
+  }, []);
   return (
     <div className="container">
       <BackTitle>Каталог</BackTitle>
       <div className="bg-white rounded-[40px] pt-[25px] px-[101px] pb-[42px] mb-5">
         <div className="flex gap-5 items-center">
           <div className="flex-1">
-            <SearchInput />
+            <SearchInput
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
           </div>
           <div className="w-[264px]">
             <CalendarInput />
@@ -76,7 +77,7 @@ const CatalogPage = () => {
       <div className="flex justify-center">
         <div className="grid grid-cols-3 gap-4">
           {data
-            ? data.findAll.map((dat) => (
+            ? data.map((dat) => (
                 <Card
                   name={dat.name}
                   desc={dat.description}

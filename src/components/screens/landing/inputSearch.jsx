@@ -2,12 +2,14 @@ import bg from "@/components/ui kit/images/bg.png";
 import Gilroy from "next/font/local";
 import { Manrope } from "next/font/google";
 import { PrimaryButton } from "@/components/ui kit/buttons";
+import { useState } from "react";
 import {
   SearchInput,
   CalendarInput,
   UsersInput,
   Checkbox,
 } from "@/components/ui kit/input";
+import { useRouter } from "next/router";
 const gilroyBold = Gilroy({
   src: "../../../fonts/Gilroy-Bold.woff",
 });
@@ -21,6 +23,8 @@ export default function InputSearch() {
   const style = {
     backgroundImage: `url(${bg.src})`,
   };
+  const [name, setName] = useState("");
+  const router = useRouter();
   return (
     <div className="container w-full h-[637px]" style={style}>
       <div className={gilroyBold.className}>
@@ -44,10 +48,23 @@ export default function InputSearch() {
               </span>
             </h1>
             <div style={{ marginTop: "16px" }} className={manrope.className}>
-              <form>
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  router.push({
+                    pathname: "/catalog",
+                    query: {
+                      name: name,
+                    },
+                  });
+                }}
+              >
                 <div className="flex gap-5 items-center">
                   <div className="flex-1">
-                    <SearchInput />
+                    <SearchInput
+                      onChange={(e) => setName(e.target.value)}
+                      value={name}
+                    />
                   </div>
                   <div className="w-[264px]">
                     <CalendarInput />
