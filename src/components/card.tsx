@@ -9,6 +9,7 @@ const gilroyMedium = Gilroy({
 });
 import image from "@/components/ui kit/images/image.png";
 import { PrimaryButton } from "./ui kit/buttons";
+import Star from "./ui kit/svg/Star";
 export default function Card() {
   return (
     <div className="w-[421px] rounded-[20px] bg-white">
@@ -25,7 +26,13 @@ export default function Card() {
         </div>
       </div>
       <div className="px-10 pt-5">
-        <div>stars</div>
+        <div className="flex pb-3">
+          <Star></Star>
+          <Star></Star>
+          <Star></Star>
+          <Star></Star>
+          <Star></Star>
+        </div>
         <h1 className="text-slate-900 text-xl leading-[25px]">
           <span className={gilroyBold.className}>"Кэнкэмэ" турбаза</span>
         </h1>
